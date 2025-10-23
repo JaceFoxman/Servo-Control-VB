@@ -29,20 +29,48 @@ Public Class Form1
 
     'TrackBar Scroll Event
     Private Sub TrackBar1_Scroll(sender As Object, e As EventArgs) Handles TrackBar1.Scroll
-        PositionSelect()   'Update Position Label
-        TX()    'Transmit Data
+        Select Case TX_RadioButton.Checked = True
+            Case True
+                PositionSelect()   'Update Position Label
+            Case False
+                PositionSelect()   'Update Position Label
+                TX()    'Transmit Data
+        End Select
+
+
     End Sub
 
     Sub SetDefaults()
         'set TrackBar defaults
         TrackBar1.Value = 1
-        PositionLabel.Text = 1.ToString
+        PositionLabel.Text = "Position:" & 1.ToString
+        TX_RadioButton.Checked = True
+        FreeRun_RadioButton.Checked = False
 
         COMPort_ComboBox.Items.Add("COM1")
         COMPort_ComboBox.Items.Add("COM2")
         COMPort_ComboBox.Items.Add("COM3")
         COMPort_ComboBox.Items.Add("COM4")
         COMPort_ComboBox.Items.Add("COM5")
+    End Sub
+
+    'when Free Run is selected disable TX Button
+    Private Sub FreeRun_RadioButton_CheckedChanged(sender As Object, e As EventArgs) Handles FreeRun_RadioButton.CheckedChanged
+        Select Case FreeRun_RadioButton.Checked
+            Case True
+                TX_Button.Enabled = False
+            Case False
+                TX_Button.Enabled = True
+        End Select
+    End Sub
+
+    Private Sub TX_RadioButton_CheckedChanged(sender As Object, e As EventArgs) Handles TX_RadioButton.CheckedChanged
+        Select Case TX_RadioButton.Checked
+            Case True
+                TX_Button.Enabled = True
+            Case False
+                TX_Button.Enabled = False
+        End Select
     End Sub
 
 
@@ -146,7 +174,7 @@ Public Class Form1
         Dim position As Integer
         position = TrackBar1.Value
         'Update Position Label
-        PositionLabel.Text = position.ToString
+        PositionLabel.Text = "Position:" & position.ToString
         Return position
     End Function
 

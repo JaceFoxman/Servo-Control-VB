@@ -30,7 +30,11 @@ Partial Class Form1
         Me.COMPort_ComboBox = New System.Windows.Forms.ComboBox()
         Me.Connect_Button = New System.Windows.Forms.Button()
         Me.TX_Button = New System.Windows.Forms.Button()
+        Me.FreeRun_RadioButton = New System.Windows.Forms.RadioButton()
+        Me.TX_GroupBox = New System.Windows.Forms.GroupBox()
+        Me.TX_RadioButton = New System.Windows.Forms.RadioButton()
         CType(Me.TrackBar1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TX_GroupBox.SuspendLayout()
         Me.SuspendLayout()
         '
         'SerialPort1
@@ -96,11 +100,45 @@ Partial Class Form1
         Me.TX_Button.Text = "Transmit"
         Me.TX_Button.UseVisualStyleBackColor = False
         '
+        'FreeRun_RadioButton
+        '
+        Me.FreeRun_RadioButton.AutoSize = True
+        Me.FreeRun_RadioButton.Location = New System.Drawing.Point(6, 48)
+        Me.FreeRun_RadioButton.Name = "FreeRun_RadioButton"
+        Me.FreeRun_RadioButton.Size = New System.Drawing.Size(101, 24)
+        Me.FreeRun_RadioButton.TabIndex = 6
+        Me.FreeRun_RadioButton.TabStop = True
+        Me.FreeRun_RadioButton.Text = "Free Run"
+        Me.FreeRun_RadioButton.UseVisualStyleBackColor = True
+        '
+        'TX_GroupBox
+        '
+        Me.TX_GroupBox.Controls.Add(Me.TX_RadioButton)
+        Me.TX_GroupBox.Controls.Add(Me.FreeRun_RadioButton)
+        Me.TX_GroupBox.Location = New System.Drawing.Point(12, 317)
+        Me.TX_GroupBox.Name = "TX_GroupBox"
+        Me.TX_GroupBox.Size = New System.Drawing.Size(223, 121)
+        Me.TX_GroupBox.TabIndex = 7
+        Me.TX_GroupBox.TabStop = False
+        Me.TX_GroupBox.Text = "TX Function Select"
+        '
+        'TX_RadioButton
+        '
+        Me.TX_RadioButton.AutoSize = True
+        Me.TX_RadioButton.Location = New System.Drawing.Point(6, 78)
+        Me.TX_RadioButton.Name = "TX_RadioButton"
+        Me.TX_RadioButton.Size = New System.Drawing.Size(130, 24)
+        Me.TX_RadioButton.TabIndex = 7
+        Me.TX_RadioButton.TabStop = True
+        Me.TX_RadioButton.Text = "Transmit Only"
+        Me.TX_RadioButton.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.Controls.Add(Me.TX_GroupBox)
         Me.Controls.Add(Me.TX_Button)
         Me.Controls.Add(Me.Connect_Button)
         Me.Controls.Add(Me.COMPort_ComboBox)
@@ -110,6 +148,8 @@ Partial Class Form1
         Me.Name = "Form1"
         Me.Text = "Form1"
         CType(Me.TrackBar1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TX_GroupBox.ResumeLayout(False)
+        Me.TX_GroupBox.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -122,4 +162,7 @@ Partial Class Form1
     Friend WithEvents COMPort_ComboBox As ComboBox
     Friend WithEvents Connect_Button As Button
     Friend WithEvents TX_Button As Button
+    Friend WithEvents FreeRun_RadioButton As RadioButton
+    Friend WithEvents TX_GroupBox As GroupBox
+    Friend WithEvents TX_RadioButton As RadioButton
 End Class
