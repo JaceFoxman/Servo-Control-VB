@@ -29,6 +29,7 @@ Partial Class Form1
         Me.PositionLabel = New System.Windows.Forms.Label()
         Me.COMPort_ComboBox = New System.Windows.Forms.ComboBox()
         Me.Connect_Button = New System.Windows.Forms.Button()
+        Me.TX_Button = New System.Windows.Forms.Button()
         CType(Me.TrackBar1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -38,17 +39,19 @@ Partial Class Form1
         '
         'Close_Button
         '
-        Me.Close_Button.Location = New System.Drawing.Point(547, 286)
+        Me.Close_Button.BackColor = System.Drawing.Color.IndianRed
+        Me.Close_Button.ForeColor = System.Drawing.Color.Black
+        Me.Close_Button.Location = New System.Drawing.Point(630, 317)
         Me.Close_Button.Name = "Close_Button"
-        Me.Close_Button.Size = New System.Drawing.Size(241, 152)
+        Me.Close_Button.Size = New System.Drawing.Size(158, 121)
         Me.Close_Button.TabIndex = 0
         Me.Close_Button.Text = "CLOSE"
-        Me.Close_Button.UseVisualStyleBackColor = True
+        Me.Close_Button.UseVisualStyleBackColor = False
         '
         'TrackBar1
         '
-        Me.TrackBar1.BackColor = System.Drawing.SystemColors.ControlDark
-        Me.TrackBar1.Location = New System.Drawing.Point(262, 93)
+        Me.TrackBar1.BackColor = System.Drawing.Color.Indigo
+        Me.TrackBar1.Location = New System.Drawing.Point(262, 196)
         Me.TrackBar1.Maximum = 20
         Me.TrackBar1.Minimum = 1
         Me.TrackBar1.Name = "TrackBar1"
@@ -59,7 +62,7 @@ Partial Class Form1
         'PositionLabel
         '
         Me.PositionLabel.BackColor = System.Drawing.SystemColors.AppWorkspace
-        Me.PositionLabel.Location = New System.Drawing.Point(358, 183)
+        Me.PositionLabel.Location = New System.Drawing.Point(355, 275)
         Me.PositionLabel.Name = "PositionLabel"
         Me.PositionLabel.Size = New System.Drawing.Size(100, 23)
         Me.PositionLabel.TabIndex = 2
@@ -69,23 +72,36 @@ Partial Class Form1
         Me.COMPort_ComboBox.FormattingEnabled = True
         Me.COMPort_ComboBox.Location = New System.Drawing.Point(12, 12)
         Me.COMPort_ComboBox.Name = "COMPort_ComboBox"
-        Me.COMPort_ComboBox.Size = New System.Drawing.Size(121, 28)
+        Me.COMPort_ComboBox.Size = New System.Drawing.Size(133, 28)
         Me.COMPort_ComboBox.TabIndex = 3
         '
         'Connect_Button
         '
-        Me.Connect_Button.Location = New System.Drawing.Point(12, 286)
+        Me.Connect_Button.BackColor = System.Drawing.Color.Green
+        Me.Connect_Button.ForeColor = System.Drawing.Color.GhostWhite
+        Me.Connect_Button.Location = New System.Drawing.Point(12, 46)
         Me.Connect_Button.Name = "Connect_Button"
-        Me.Connect_Button.Size = New System.Drawing.Size(241, 152)
+        Me.Connect_Button.Size = New System.Drawing.Size(133, 35)
         Me.Connect_Button.TabIndex = 4
         Me.Connect_Button.Text = "Connect"
-        Me.Connect_Button.UseVisualStyleBackColor = True
+        Me.Connect_Button.UseVisualStyleBackColor = False
+        '
+        'TX_Button
+        '
+        Me.TX_Button.BackColor = System.Drawing.SystemColors.InactiveCaption
+        Me.TX_Button.Location = New System.Drawing.Point(325, 317)
+        Me.TX_Button.Name = "TX_Button"
+        Me.TX_Button.Size = New System.Drawing.Size(158, 121)
+        Me.TX_Button.TabIndex = 5
+        Me.TX_Button.Text = "Transmit"
+        Me.TX_Button.UseVisualStyleBackColor = False
         '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.Controls.Add(Me.TX_Button)
         Me.Controls.Add(Me.Connect_Button)
         Me.Controls.Add(Me.COMPort_ComboBox)
         Me.Controls.Add(Me.PositionLabel)
@@ -105,4 +121,5 @@ Partial Class Form1
     Friend WithEvents PositionLabel As Label
     Friend WithEvents COMPort_ComboBox As ComboBox
     Friend WithEvents Connect_Button As Button
+    Friend WithEvents TX_Button As Button
 End Class
