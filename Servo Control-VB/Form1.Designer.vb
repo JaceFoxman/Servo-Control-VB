@@ -33,6 +33,14 @@ Partial Class Form1
         Me.FreeRun_RadioButton = New System.Windows.Forms.RadioButton()
         Me.TX_GroupBox = New System.Windows.Forms.GroupBox()
         Me.TX_RadioButton = New System.Windows.Forms.RadioButton()
+        Me.ReceivedTextBox = New System.Windows.Forms.TextBox()
+        Me.DataTextBox = New System.Windows.Forms.TextBox()
+        Me.StatusLabel = New System.Windows.Forms.Label()
+        Me.TXTextBox = New System.Windows.Forms.TextBox()
+        Me.HandShakeTextBox = New System.Windows.Forms.TextBox()
+        Me.TXLabel = New System.Windows.Forms.Label()
+        Me.ServoDataLabel = New System.Windows.Forms.Label()
+        Me.ReadTimer = New System.Windows.Forms.Timer(Me.components)
         CType(Me.TrackBar1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TX_GroupBox.SuspendLayout()
         Me.SuspendLayout()
@@ -85,7 +93,7 @@ Partial Class Form1
         Me.Connect_Button.ForeColor = System.Drawing.Color.GhostWhite
         Me.Connect_Button.Location = New System.Drawing.Point(12, 46)
         Me.Connect_Button.Name = "Connect_Button"
-        Me.Connect_Button.Size = New System.Drawing.Size(133, 35)
+        Me.Connect_Button.Size = New System.Drawing.Size(136, 35)
         Me.Connect_Button.TabIndex = 4
         Me.Connect_Button.Text = "Connect"
         Me.Connect_Button.UseVisualStyleBackColor = False
@@ -133,11 +141,73 @@ Partial Class Form1
         Me.TX_RadioButton.Text = "Transmit Only"
         Me.TX_RadioButton.UseVisualStyleBackColor = True
         '
+        'ReceivedTextBox
+        '
+        Me.ReceivedTextBox.Location = New System.Drawing.Point(630, 14)
+        Me.ReceivedTextBox.Name = "ReceivedTextBox"
+        Me.ReceivedTextBox.Size = New System.Drawing.Size(158, 26)
+        Me.ReceivedTextBox.TabIndex = 8
+        '
+        'DataTextBox
+        '
+        Me.DataTextBox.Location = New System.Drawing.Point(630, 93)
+        Me.DataTextBox.Name = "DataTextBox"
+        Me.DataTextBox.Size = New System.Drawing.Size(158, 26)
+        Me.DataTextBox.TabIndex = 9
+        '
+        'StatusLabel
+        '
+        Me.StatusLabel.Location = New System.Drawing.Point(630, 70)
+        Me.StatusLabel.Name = "StatusLabel"
+        Me.StatusLabel.Size = New System.Drawing.Size(171, 23)
+        Me.StatusLabel.TabIndex = 10
+        '
+        'TXTextBox
+        '
+        Me.TXTextBox.Location = New System.Drawing.Point(12, 239)
+        Me.TXTextBox.Name = "TXTextBox"
+        Me.TXTextBox.Size = New System.Drawing.Size(158, 26)
+        Me.TXTextBox.TabIndex = 11
+        '
+        'HandShakeTextBox
+        '
+        Me.HandShakeTextBox.Location = New System.Drawing.Point(12, 164)
+        Me.HandShakeTextBox.Name = "HandShakeTextBox"
+        Me.HandShakeTextBox.Size = New System.Drawing.Size(158, 26)
+        Me.HandShakeTextBox.TabIndex = 12
+        '
+        'TXLabel
+        '
+        Me.TXLabel.Location = New System.Drawing.Point(48, 138)
+        Me.TXLabel.Name = "TXLabel"
+        Me.TXLabel.Size = New System.Drawing.Size(100, 23)
+        Me.TXLabel.TabIndex = 13
+        Me.TXLabel.Text = "Transmit"
+        '
+        'ServoDataLabel
+        '
+        Me.ServoDataLabel.Location = New System.Drawing.Point(35, 213)
+        Me.ServoDataLabel.Name = "ServoDataLabel"
+        Me.ServoDataLabel.Size = New System.Drawing.Size(100, 23)
+        Me.ServoDataLabel.TabIndex = 14
+        Me.ServoDataLabel.Text = "Servo Data"
+        '
+        'ReadTimer
+        '
+        Me.ReadTimer.Interval = 50
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.Controls.Add(Me.ServoDataLabel)
+        Me.Controls.Add(Me.TXLabel)
+        Me.Controls.Add(Me.HandShakeTextBox)
+        Me.Controls.Add(Me.TXTextBox)
+        Me.Controls.Add(Me.StatusLabel)
+        Me.Controls.Add(Me.DataTextBox)
+        Me.Controls.Add(Me.ReceivedTextBox)
         Me.Controls.Add(Me.TX_GroupBox)
         Me.Controls.Add(Me.TX_Button)
         Me.Controls.Add(Me.Connect_Button)
@@ -165,4 +235,12 @@ Partial Class Form1
     Friend WithEvents FreeRun_RadioButton As RadioButton
     Friend WithEvents TX_GroupBox As GroupBox
     Friend WithEvents TX_RadioButton As RadioButton
+    Friend WithEvents ReceivedTextBox As TextBox
+    Friend WithEvents DataTextBox As TextBox
+    Friend WithEvents StatusLabel As Label
+    Friend WithEvents TXTextBox As TextBox
+    Friend WithEvents HandShakeTextBox As TextBox
+    Friend WithEvents TXLabel As Label
+    Friend WithEvents ServoDataLabel As Label
+    Friend WithEvents ReadTimer As Timer
 End Class
