@@ -41,6 +41,17 @@ Partial Class Form1
         Me.TXLabel = New System.Windows.Forms.Label()
         Me.ServoDataLabel = New System.Windows.Forms.Label()
         Me.ReadTimer = New System.Windows.Forms.Timer(Me.components)
+        Me.HighByteTextBox = New System.Windows.Forms.TextBox()
+        Me.ADCLabel = New System.Windows.Forms.Label()
+        Me.ADCCheckBox = New System.Windows.Forms.CheckBox()
+        Me.ADCTimer = New System.Windows.Forms.Timer(Me.components)
+        Me.LowByteTextBox = New System.Windows.Forms.TextBox()
+        Me.LowByteLabel = New System.Windows.Forms.Label()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.ADCTextBox = New System.Windows.Forms.TextBox()
+        Me.RX_CharactersLabel = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.VoltageLabel = New System.Windows.Forms.Label()
         CType(Me.TrackBar1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TX_GroupBox.SuspendLayout()
         Me.SuspendLayout()
@@ -143,31 +154,35 @@ Partial Class Form1
         '
         'ReceivedTextBox
         '
-        Me.ReceivedTextBox.Location = New System.Drawing.Point(630, 14)
+        Me.ReceivedTextBox.Location = New System.Drawing.Point(620, 50)
         Me.ReceivedTextBox.Name = "ReceivedTextBox"
-        Me.ReceivedTextBox.Size = New System.Drawing.Size(158, 26)
+        Me.ReceivedTextBox.Size = New System.Drawing.Size(162, 26)
         Me.ReceivedTextBox.TabIndex = 8
+        Me.ReceivedTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'DataTextBox
         '
-        Me.DataTextBox.Location = New System.Drawing.Point(630, 93)
+        Me.DataTextBox.Location = New System.Drawing.Point(616, 109)
         Me.DataTextBox.Name = "DataTextBox"
-        Me.DataTextBox.Size = New System.Drawing.Size(158, 26)
+        Me.DataTextBox.Size = New System.Drawing.Size(172, 26)
         Me.DataTextBox.TabIndex = 9
+        Me.DataTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'StatusLabel
         '
-        Me.StatusLabel.Location = New System.Drawing.Point(630, 70)
+        Me.StatusLabel.Location = New System.Drawing.Point(642, 24)
         Me.StatusLabel.Name = "StatusLabel"
-        Me.StatusLabel.Size = New System.Drawing.Size(171, 23)
+        Me.StatusLabel.Size = New System.Drawing.Size(128, 23)
         Me.StatusLabel.TabIndex = 10
+        Me.StatusLabel.Text = "Bytes Recived"
         '
         'TXTextBox
         '
-        Me.TXTextBox.Location = New System.Drawing.Point(12, 239)
+        Me.TXTextBox.Location = New System.Drawing.Point(12, 221)
         Me.TXTextBox.Name = "TXTextBox"
         Me.TXTextBox.Size = New System.Drawing.Size(158, 26)
         Me.TXTextBox.TabIndex = 11
+        Me.TXTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'HandShakeTextBox
         '
@@ -175,18 +190,19 @@ Partial Class Form1
         Me.HandShakeTextBox.Name = "HandShakeTextBox"
         Me.HandShakeTextBox.Size = New System.Drawing.Size(158, 26)
         Me.HandShakeTextBox.TabIndex = 12
+        Me.HandShakeTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'TXLabel
         '
-        Me.TXLabel.Location = New System.Drawing.Point(48, 138)
+        Me.TXLabel.Location = New System.Drawing.Point(14, 138)
         Me.TXLabel.Name = "TXLabel"
-        Me.TXLabel.Size = New System.Drawing.Size(100, 23)
+        Me.TXLabel.Size = New System.Drawing.Size(152, 23)
         Me.TXLabel.TabIndex = 13
-        Me.TXLabel.Text = "Transmit"
+        Me.TXLabel.Text = "Transmit Characters"
         '
         'ServoDataLabel
         '
-        Me.ServoDataLabel.Location = New System.Drawing.Point(35, 213)
+        Me.ServoDataLabel.Location = New System.Drawing.Point(45, 195)
         Me.ServoDataLabel.Name = "ServoDataLabel"
         Me.ServoDataLabel.Size = New System.Drawing.Size(100, 23)
         Me.ServoDataLabel.TabIndex = 14
@@ -194,13 +210,110 @@ Partial Class Form1
         '
         'ReadTimer
         '
-        Me.ReadTimer.Interval = 50
+        Me.ReadTimer.Interval = 500
+        '
+        'HighByteTextBox
+        '
+        Me.HighByteTextBox.Location = New System.Drawing.Point(616, 164)
+        Me.HighByteTextBox.Name = "HighByteTextBox"
+        Me.HighByteTextBox.Size = New System.Drawing.Size(172, 26)
+        Me.HighByteTextBox.TabIndex = 15
+        Me.HighByteTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'ADCLabel
+        '
+        Me.ADCLabel.BackColor = System.Drawing.SystemColors.AppWorkspace
+        Me.ADCLabel.Location = New System.Drawing.Point(325, 83)
+        Me.ADCLabel.Name = "ADCLabel"
+        Me.ADCLabel.Size = New System.Drawing.Size(172, 23)
+        Me.ADCLabel.TabIndex = 16
+        Me.ADCLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'ADCCheckBox
+        '
+        Me.ADCCheckBox.AutoSize = True
+        Me.ADCCheckBox.Location = New System.Drawing.Point(49, 253)
+        Me.ADCCheckBox.Name = "ADCCheckBox"
+        Me.ADCCheckBox.Size = New System.Drawing.Size(69, 24)
+        Me.ADCCheckBox.TabIndex = 17
+        Me.ADCCheckBox.Text = "ADC"
+        Me.ADCCheckBox.UseVisualStyleBackColor = True
+        '
+        'ADCTimer
+        '
+        Me.ADCTimer.Interval = 500
+        '
+        'LowByteTextBox
+        '
+        Me.LowByteTextBox.Location = New System.Drawing.Point(616, 221)
+        Me.LowByteTextBox.Name = "LowByteTextBox"
+        Me.LowByteTextBox.Size = New System.Drawing.Size(172, 26)
+        Me.LowByteTextBox.TabIndex = 18
+        Me.LowByteTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'LowByteLabel
+        '
+        Me.LowByteLabel.Location = New System.Drawing.Point(622, 195)
+        Me.LowByteLabel.Name = "LowByteLabel"
+        Me.LowByteLabel.Size = New System.Drawing.Size(166, 23)
+        Me.LowByteLabel.TabIndex = 19
+        Me.LowByteLabel.Text = "ADRESL (Low Byte) "
+        '
+        'Label1
+        '
+        Me.Label1.Location = New System.Drawing.Point(616, 138)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(166, 23)
+        Me.Label1.TabIndex = 20
+        Me.Label1.Text = "ADRESH (High Byte) "
+        '
+        'ADCTextBox
+        '
+        Me.ADCTextBox.Location = New System.Drawing.Point(325, 154)
+        Me.ADCTextBox.Name = "ADCTextBox"
+        Me.ADCTextBox.Size = New System.Drawing.Size(172, 26)
+        Me.ADCTextBox.TabIndex = 21
+        Me.ADCTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'RX_CharactersLabel
+        '
+        Me.RX_CharactersLabel.Location = New System.Drawing.Point(632, 83)
+        Me.RX_CharactersLabel.Name = "RX_CharactersLabel"
+        Me.RX_CharactersLabel.Size = New System.Drawing.Size(150, 23)
+        Me.RX_CharactersLabel.TabIndex = 22
+        Me.RX_CharactersLabel.Text = "Recived Characters"
+        '
+        'Label2
+        '
+        Me.Label2.Location = New System.Drawing.Point(355, 128)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(114, 23)
+        Me.Label2.TabIndex = 23
+        Me.Label2.Text = "10 Byte Data"
+        '
+        'VoltageLabel
+        '
+        Me.VoltageLabel.Location = New System.Drawing.Point(371, 58)
+        Me.VoltageLabel.Name = "VoltageLabel"
+        Me.VoltageLabel.Size = New System.Drawing.Size(67, 23)
+        Me.VoltageLabel.TabIndex = 24
+        Me.VoltageLabel.Text = "Voltage"
         '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.Controls.Add(Me.VoltageLabel)
+        Me.Controls.Add(Me.Label2)
+        Me.Controls.Add(Me.RX_CharactersLabel)
+        Me.Controls.Add(Me.ADCTextBox)
+        Me.Controls.Add(Me.Label1)
+        Me.Controls.Add(Me.LowByteLabel)
+        Me.Controls.Add(Me.LowByteTextBox)
+        Me.Controls.Add(Me.ADCCheckBox)
+        Me.Controls.Add(Me.ADCLabel)
+        Me.Controls.Add(Me.HighByteTextBox)
         Me.Controls.Add(Me.ServoDataLabel)
         Me.Controls.Add(Me.TXLabel)
         Me.Controls.Add(Me.HandShakeTextBox)
@@ -243,4 +356,15 @@ Partial Class Form1
     Friend WithEvents TXLabel As Label
     Friend WithEvents ServoDataLabel As Label
     Friend WithEvents ReadTimer As Timer
+    Friend WithEvents HighByteTextBox As TextBox
+    Friend WithEvents ADCLabel As Label
+    Friend WithEvents ADCCheckBox As CheckBox
+    Friend WithEvents ADCTimer As Timer
+    Friend WithEvents LowByteTextBox As TextBox
+    Friend WithEvents LowByteLabel As Label
+    Friend WithEvents Label1 As Label
+    Friend WithEvents ADCTextBox As TextBox
+    Friend WithEvents RX_CharactersLabel As Label
+    Friend WithEvents Label2 As Label
+    Friend WithEvents VoltageLabel As Label
 End Class

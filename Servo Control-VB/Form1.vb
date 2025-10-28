@@ -13,6 +13,7 @@ Imports System.Reflection
 
 
 Public Class Form1
+
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         SetDefaults()
     End Sub
@@ -105,6 +106,7 @@ Public Class Form1
             Return
         End Try
         ReadTimer.Enabled = True 'Enable Timer to read data
+
     End Sub
 
     Private Sub Close_Button_Click(sender As Object, e As EventArgs) Handles Close_Button.Click
@@ -114,16 +116,26 @@ Public Class Form1
 
     Sub TX()
         Try
-            Dim handShake As Byte() = New Byte(0) {}
+            Dim handShake As Byte() = New Byte(1) {}
             handShake(0) = &H24 'First byte (send an interupt to the PIC "$")
-            SerialPort1.Write(handShake, 0, 1) 'Send 1 bytes of data
-            HandShakeTextBox.Text = handShake(0).ToString
+            Dim temp As String
+            If ADCCheckBox.Checked = True Then
+                handShake(1) = &H26
+            Else
+                handShake(1) = &H0
+            End If
+            SerialPort1.Write(handShake, 0, 2) 'Send 2 bytes of data
+            For Each dataByte In handShake
+                temp &= $"{CStr(dataByte)},"
+            Next
+            HandShakeTextBox.Text = temp
 
         Catch ex As Exception
             'Show error message if port is invalid
             MessageBox.Show("Error: " & ex.Message)
 
         End Try
+        'ReadTimer.Enabled = True 'Enable Timer to read data
     End Sub
 
     Sub ServoPosition()
@@ -131,7 +143,7 @@ Public Class Form1
         Dim Position = PositionSelect()
         Select Case Position
             Case 1
-                data(0) = &H0   'Position  (0000 0000)
+                data(0) = &H0  'Position  (0000 0000)
             Case 2
                 data(0) = &H1  'Position  (0000 0001)
             Case 3
@@ -171,6 +183,7 @@ Public Class Form1
             Case 20
                 data(0) = &H13  'Position  (1010 1000)
         End Select
+
         SerialPort1.Write(data, 0, 1) 'Send 1 bytes of data
         TXTextBox.Text = data(0).ToString
     End Sub
@@ -200,16 +213,55 @@ Public Class Form1
             Dim temp As String
             SerialPort1.Read(value, 0, SerialPort1.BytesToRead)
             For Each dataByte In value
-                temp &= $"{CStr(dataByte)}, "
+                temp &= $"{CStr(dataByte)},"
             Next
             DataTextBox.Text = temp
-            If value(0) = 36 Then
-                StatusLabel.Text = "Status: $ Received"
-                ServoPosition() 'Send Servo Position
-            Else
-                StatusLabel.Text = "Status: No $ Received"
-            End If
-        End If
 
+
+            If value(0) = 36 Then
+                ServoPosition() 'Send Servo Position
+
+                Select Case ADCCheckBox.Checked = True
+                    Case True
+                        Try
+                            Dim highByteWeighted As Integer = (value(1) * 4) 'Convert ADRESH to proper 10 byte value
+                            Dim lowByteWeighted As Integer = (value(2) \ 64) 'Convert ADRESL to proper 10 byte value
+                            HighByteTextBox.Text = highByteWeighted.ToString
+                            LowByteTextBox.Text = lowByteWeighted.ToString
+                            ADCTimer.Enabled = True 'turn on here so a proper value is known for ADC label
+                        Catch ex As Exception
+                            MessageBox.Show("Error: Read Buffer Overflow")
+                        End Try
+                    Case False
+                        ADCTimer.Enabled = False 'turn off here so the next tick of ADC timer dosent read a string value
+                        HighByteTextBox.Text = "No current data"
+                        LowByteTextBox.Text = "No current data"
+                        ADCTextBox.Text = "No current data"
+                        ADCLabel.Text = "No current data"
+                End Select
+            Else
+
+            End If
+
+        End If
+        'ReadTimer.Enabled = False
     End Sub
+
+
+
+    Private Sub ADCTimer_Tick(sender As Object, e As EventArgs) Handles ADCTimer.Tick
+        Select Case ADCCheckBox.Checked = True
+            Case True
+                Dim highByte As Integer = CInt(HighByteTextBox.Text)
+                Dim lowByte As Integer = CInt(LowByteTextBox.Text)
+                Dim tenByteData As Integer = (highByte + lowByte)
+                ADCTextBox.Text = tenByteData.ToString
+            Case False
+                HighByteTextBox.Text = "No current data"
+                LowByteTextBox.Text = "No current data"
+                ADCTextBox.Text = "No current data"
+                ADCLabel.Text = "No current data"
+        End Select
+    End Sub
+
 End Class
