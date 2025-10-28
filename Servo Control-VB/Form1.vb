@@ -55,11 +55,8 @@ Public Class Form1
             COMPort_ComboBox.Items.Add(port)
         Next
 
-        'COMPort_ComboBox.Items.Add("COM1")
-        'COMPort_ComboBox.Items.Add("COM2")
-        'COMPort_ComboBox.Items.Add("COM3")
-        'COMPort_ComboBox.Items.Add("COM4")
-        'COMPort_ComboBox.Items.Add("COM5")
+        COMPort_ComboBox.SelectedIndex = 0
+
     End Sub
 
     'when Free Run is selected disable TX Button
@@ -256,6 +253,7 @@ Public Class Form1
                 Dim lowByte As Integer = CInt(LowByteTextBox.Text)
                 Dim tenByteData As Integer = (highByte + lowByte)
                 ADCTextBox.Text = tenByteData.ToString
+                ADCLabel.Text = $"{(tenByteData \ 3).ToString} °F" '3.38
             Case False
                 HighByteTextBox.Text = "No current data"
                 LowByteTextBox.Text = "No current data"
